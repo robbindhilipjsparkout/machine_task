@@ -25,7 +25,7 @@ Route::get('/', function(){
 
 return view('machine_task.mainpage');
 
-});
+})->name('mainpage');
 
 Route::controller(TestController::class)->group(function(){
   

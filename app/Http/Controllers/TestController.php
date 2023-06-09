@@ -10,6 +10,7 @@ use App\Models\HasApiTokens;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestScoreEmail;
 use App\Jobs\SendTestScoreEmail;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class TestController extends Controller
@@ -45,6 +46,23 @@ class TestController extends Controller
 
 
 public function store(Request $request){
+
+    $validator = Validator::make($request->all(), [
+        'test.*.question' => 'required',
+        'test.*.option1' => 'required',
+        'test.*.option2' => 'required',
+        'test.*.correctAnswer' => 'required',
+    ], [
+        'test.*.question.required' => 'The question field is required.',
+        'test.*.option1.required' => 'The option 1 field is required.',
+        'test.*.option2.required' => 'The option 2 field is required.',
+        'test.*.correctAnswer.required' => 'The correct answer field is required.',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
 
     $questions = $request->input('test');
 
@@ -90,7 +108,7 @@ return redirect()->route('questionscreate')->with('success', 'Questions stored s
     public function show(CorrectAnswer $correctAnswer)
     {
      
-        $questions=Questions::with('QuestionToOption')->get();
+        $questions=Questions::with('QuestionToOption')->paginate(5);
         
         
         //$correctanswer=CorrectAnswer::get();
@@ -128,14 +146,17 @@ public function score(Request $request)
     
         $totalQuestions = count($questions);
         $score = ($correctAnswers / $totalQuestions) * 100;
+        //$score = ($totalQuestions > 0) ? ($correctAnswers / $totalQuestions) * 100 : 0;
+
 }
 
 } 
 
 
 // Display the score
-    return view('machine_task.score', compact('score', 'answers', 'questions'));
+return view('machine_task.score', compact('score', 'answers', 'questions'));
 }
+
 
 }
 

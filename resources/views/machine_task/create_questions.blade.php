@@ -17,73 +17,33 @@
       <div id="questionsContainer">
         <div class="question form-row">
           <div class="col">
-            <input type="text" class="form-control" name="test[0][question]" placeholder="Enter a question" required><br>
-
+            <input type="text" class="form-control" name="test[0][question]" placeholder="Enter a question" ><br>
+       
           </div><br><br>
           <div class="col">
-            <input type="text" class="form-control" name="test[0][option1]" placeholder="Option 1" required><br>
+            <input type="text" class="form-control" name="test[0][option1]" placeholder="Option 1" ><br>
+       
           </div><br><br>
           <div class="col">
-            <input type="text" class="form-control" name="test[0][option2]"  placeholder="Option 2" required>
+            <input type="text" class="form-control" name="test[0][option2]"  placeholder="Option 2" >
           </div><br><br>
           <div class="col">
-            <input type="text" class="form-control" name="test[0][correctAnswer]" placeholder="Correct Answer" required>
+            <input type="text" class="form-control" name="test[0][correctAnswer]" placeholder="Correct Answer" >
           </div>
           <div class="col">
             <button type="button" class="btn btn-success addQuestion">+</button>
             
-            <button type="button" class="btn btn-danger removeQuestion">-</button>
+            <!-- //<button type="button" class="btn btn-danger removeQuestion">-</button> -->
           </div>
         </div>
       </div><br>
       <button type="submit" class="btn btn-primary">Submit</button>
+     <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
     </form>
   </div>
 
 
-  <script>
-    // JavaScript code to handle dynamic field addition
-    document.addEventListener('DOMContentLoaded', function () {
-        let questionIndex = 0;
-
-        // Add question field
-        document.querySelector('.addQuestion').addEventListener('click', function () {
-            questionIndex++;
-
-            const questionTemplate = `
-                <div class="question form-row">
-                    <div class="col">
-                        <input type="text" class="form-control" name="test[${questionIndex}][question]" placeholder="Enter a question"><br>
-                    </div><br><br>
-                    <div class="col">
-                        <input type="text" class="form-control" name="test[${questionIndex}][option1]" placeholder="Option 1"><br>
-                    </div><br><br>
-                    <div class="col">
-                        <input type="text" class="form-control" name="test[${questionIndex}][option2]" placeholder="Option 2">
-                    </div><br><br>
-                    <div class="col">
-                        <input type="text" class="form-control" name="test[${questionIndex}][correctAnswer]" placeholder="Correct Answer">
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-danger removeQuestion">-</button>
-                    </div>
-                </div>
-            `;
-
-            const questionContainer = document.getElementById('questionsContainer');
-            const questionDiv = document.createElement('div');
-            questionDiv.innerHTML = questionTemplate;
-            questionContainer.appendChild(questionDiv);
-        });
-
-        // Remove question field
-        document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('removeQuestion')) {
-                event.target.closest('.question').remove();
-            }
-        });
-    });
-</script>
+ @include('layouts.script')
 
 </body>
 </html>

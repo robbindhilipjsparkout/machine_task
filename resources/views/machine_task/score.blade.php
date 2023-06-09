@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+     <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Test Score</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+   
     <style>
         body {
             background-color: #f8f9fa;
@@ -27,31 +32,61 @@
         .answer {
             text-align: center;
         }
+        button[type="button"] {
+            /* display: block;
+            margin: 20px auto 0; */
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration:none;
+        }
+
+        button[type="button"]:hover {
+            background-color: #45a049;
+           
+        }
     </style>
+
+
+
+   
 </head>
 <body>
+
+
     <div class="container">
-        <h3>Your Test Score: : {{ $score }} / 100</h3>
-        
+    <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
+        <h3>Your Test Score: {{ $score }} / 100</h3>
+
         @foreach ($questions as $question)
-        <div class="card">
-            <div class="card-header">
-                <h5>{{ $question->questions }}</h5>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>{{ $question->questions }}</h5>
+                </div>
+                <div class="card-body">
+                    @if (isset($answers[$question->id]))
+                        <p class="answer">Selected Answer: {{ $answers[$question->id] }}</p>
+                    @else
+                        <p class="answer">Selected Answer: N/A</p>
+                    @endif
+                    @foreach ($question->QuestionToCorrectAnswer as $answer)
+                        <p class="answer"><strong>Correct Answer:</strong> {{ $answer->correctanswer }}</p>
+                    @endforeach
+                </div>
             </div>
-            <div class="card-body">
-                <p class="answer">Selected Answer: {{ $answers[$question->id] }}</p>
-                @foreach($question->QuestionToCorrectAnswer as $answer)
-                <p class="answer"><strong>Correct Answer:</strong> {{$answer->correctanswer}}</p>
-                @endforeach
-            </div>
-        </div>
         @endforeach
-        
+    </div>
+</body>
+
         <hr>
+      
         
     </div>
-    
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    @include('layouts.script')
+
 </body>
 </html>
