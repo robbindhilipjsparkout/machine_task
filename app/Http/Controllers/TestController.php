@@ -9,6 +9,7 @@ use App\Models\Options;
 use App\Models\HasApiTokens;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestScoreEmail;
+use App\Jobs\SendTestScoreEmail;
 use DB;
 
 class TestController extends Controller
@@ -129,8 +130,8 @@ public function score(Request $request)
         $score = ($correctAnswers / $totalQuestions) * 100;
 }
 
-
 } 
+
 
 // Display the score
     return view('machine_task.score', compact('score', 'answers', 'questions'));
