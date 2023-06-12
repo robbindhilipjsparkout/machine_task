@@ -8,6 +8,19 @@
   <title>Dashboard</title>
 </head>
 <body>
+
+
+<div class="col-lg-3 offset-1" style="margin-top:20px;">
+@if(session()->has('message'))
+    <div class="alert alert-success">
+        {{ session()->get('message') }}
+    </div>
+@endif
+
+</div>
+
+
+
   <div class="container">
     <h1>Create Questions:</h1>
     <!-- <form id="questionForm"  > -->
@@ -34,6 +47,7 @@
             <button type="button" class="btn btn-success addQuestion">+</button>
             
             <!-- //<button type="button" class="btn btn-danger removeQuestion">-</button> -->
+            
           </div>
         </div>
       </div><br>
@@ -45,5 +59,9 @@
 
  @include('layouts.script')
 
+
+
+
 </body>
 </html>
+

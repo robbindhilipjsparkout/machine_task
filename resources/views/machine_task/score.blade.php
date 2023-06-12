@@ -60,7 +60,7 @@
 
     <div class="container">
     <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
-        <h3>Your Test Score: {{ $score }} / 100</h3>
+        <h3>Your Test Score: {{ $score }} </h3>
 
         @foreach ($questions as $question)
             <div class="card mb-3">
@@ -81,7 +81,6 @@
         @endforeach
     </div>
 </body>
-
         <hr>
       
         

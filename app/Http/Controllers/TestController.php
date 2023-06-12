@@ -12,6 +12,7 @@ use App\Mail\TestScoreEmail;
 use App\Jobs\SendTestScoreEmail;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Session;
 
 class TestController extends Controller
 {
@@ -94,7 +95,7 @@ public function store(Request $request){
     
 // Redirect or perform any other actions after storing the data
 
-return redirect()->route('questionscreate')->with('success', 'Questions stored successfully.');
+return redirect()->route('questionscreate')->with('message', 'Questions stored successfully.');
 }
 
 
@@ -144,17 +145,25 @@ public function score(Request $request)
             }
             }    
     
-        $totalQuestions = count($questions);
-        $score = ($correctAnswers / $totalQuestions) * 100;
-        //$score = ($totalQuestions > 0) ? ($correctAnswers / $totalQuestions) * 100 : 0;
+         $totalQuestions = count($questions);
+        // $score = ($correctAnswers / $totalQuestions) * 100;
+        // //$score = ($totalQuestions > 0) ? ($correctAnswers / $totalQuestions) * 100 : 0;
+        $score = ($correctAnswers) . ' / ' . ($totalQuestions);
 
+       
 }
 
 } 
 
 
 // Display the score
-return view('machine_task.score', compact('score', 'answers', 'questions'));
+ //return view('machine_task.attend_test', compact('score', 'answers', 'questions'));
+
+
+
+ return view('machine_task.score', compact( 'answers', 'questions', 'score'));
+
+
 }
 
 
