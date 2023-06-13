@@ -150,7 +150,7 @@ public function score(Request $request)
         // //$score = ($totalQuestions > 0) ? ($correctAnswers / $totalQuestions) * 100 : 0;
         $score = ($correctAnswers) . ' / ' . ($totalQuestions);
 
-       
+    
 }
 
 } 
@@ -162,6 +162,9 @@ public function score(Request $request)
 
 
  return view('machine_task.score', compact( 'answers', 'questions', 'score'));
+
+
+// return view('machine_task.attend_test', compact('score'));
 
 
 }

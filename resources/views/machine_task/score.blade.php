@@ -10,15 +10,27 @@
     <title>Test Score</title>
    
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+       body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0;
+      background-image: url("https://img.freepik.com/free-vector/geometric-blue-background-desktop-wallpaper-vector_53876-135927.jpg?w=1060&t=st=1686288162~exp=1686288762~hmac=19c1bce5236bdabfbabe5518c81f4cc5472bfdb8f82633840f0b6894ae69be12");
+      background-size: cover;
+    }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding-top: 50px;
         }
-        h1, h3, h4 {
+        h3{
+            border-radius:6px;
+            background:white;
+            text-align: center;
+        }
+        h1, h4 {
             text-align: center;
         }
         .card {

@@ -3,67 +3,77 @@
 <head>
     <title>Attend test</title>
     
-    <!-- Include other HTML head elements -->
-    <link rel="stylesheet" href="path/to/custom.css">
-
-<style>
-
-
- .pagination a:hover{
-  color: green;
- }
-/* Pagination styles */
-.my-pagination-class .page-link {
-  color: green; /* Default color for pagination links */
-  border: 1px solid #dee2e6; /* Default border color for pagination links */
-}
-
-.my-pagination-class .page-item.active .page-link {
-  background-color: green; /* Color for active page */
-  border-color: green; /* Border color for active page */
-  color: white; /* Text color for active page */
-}
-
-
-
-</style>
-
     @include('layouts.attend_test_script_style')
+   
+
 
 </head>
 <body>
-    <h1>Test</h1>  
+    <h1 class="test">Test</h1>  
+   
+   
+        <!-- <div class="time">
+            Time Remaining: <span id="timer"></span>
+        </div> -->
+
+
+    @if($questions->currentPage()==1 )
+        <p>* You must use a functioning webcam and microphone.<br>
+           * No cell phones or other secondary devices in the room or test area.<br>
+           * Your desk/table must be clear or any materials except your test-taking device.<br>
+           * No one else can be in the room with you.<br>
+           * No talking.</p>
+        @endif
+
 
     <form action="{{ route('score') }}" method="POST">
         @csrf
 
+        @php
+        $counter = ($questions->currentPage() - 1) * $questions->perPage() + 1;
+        @endphp
+
         @foreach ($questions as $question)
-            <h3>{{ $question->questions }}</h3>
+           <h6>
+               <span class="counter">{{ $counter }} )</span>
+               <span class="question-text">{{ $question->questions }}</span>
+           </h6>
             
             @foreach($question->QuestionToOption as $q)
-                <input type="radio" id="radioButton1"  name="answers[{{$question->id}}]" value="{{$q->option1}}" >
-                <label>{{$q->option1}}</label><br>
-                <input type="radio"id="radioButton2"  name="answers[{{$question->id}}]" value="{{$q->option2}}" >
-                <label>{{$q->option2}}</label>
+                <div class="options-container">
+                    <div class="option">
+                        <div class="letter">A</div>
+                        <input type="radio" id="radioButton1" name="answers[{{ $question->id }}]" value="{{ $q->option1 }}" >
+                        <label>{{ $q->option1 }}</label>
+                    </div>
+                    <div class="option">
+                        <div class="letter">B</div>
+                        <input type="radio" id="radioButton2" name="answers[{{ $question->id }}]" value="{{ $q->option2 }}" >
+                        <label>{{ $q->option2 }}</label>
+                    </div>
+                </div>
             @endforeach
-            <hr>
+            <hr style="color:white">
+            @php
+                $counter++;
+            @endphp
         @endforeach
 
-        <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center mt-3 my-pagination-class">
-            {{ $questions->onEachSide(1)->links('pagination::bootstrap-4' , ['class' => 'my-pagination-class'])  }}
-        </ul>
-    </nav>
-
-    @if ($questions->currentPage() == $questions->lastPage())
-        <button type="submit">Submit</button>
+        @if ($questions->currentPage() == $questions->lastPage())
+            <a href="{{ $questions->previousPageUrl() }}"><button type="button">Prev</button></a>
+            <button style="margin-top:15px" class="submit" type="submit">Submit</button>
         @else
-        <a href="{{ $questions->nextPageUrl() }}"><button type="button">Next</button></a>
-    @endif
-
-    <a href="{{ route('mainpage') }}"><button type="button">Back</button></a>
-</form>
+            <a href="{{ $questions->nextPageUrl() }}"><button class="submit" type="button">Next</button></a>
+            <a href="{{ $questions->previousPageUrl() }}"><button type="button">Prev</button></a>
+        @endif
 
 
+    </form>
+
+
+
+
+    
 </body>
 </html>
+ 

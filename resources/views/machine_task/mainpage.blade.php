@@ -37,10 +37,10 @@
   <h1 class="mission-task">Mission Task</h1>
 
   <div class="button-container">
-  <a href="{{route('questionscreate')}}" class="color:white">    <button class="btn btn-primary button">Create Test</button>  </a>
+  <a href="{{route('questionscreate')}}" class="color:white">    <button class="btn btn-success button">Create Test</button>  </a>
                                
    
-  <a href="{{route('attendshow')}}" class="color:white">   <button class="btn btn-primary button">Attend Test</button>   </a>
+  <a href="{{route('attendshow')}}" class="color:white">   <button class="btn btn-success button">Attend Test</button>   </a>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
