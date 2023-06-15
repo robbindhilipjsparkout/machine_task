@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-
+use App\Http\Controllers\TeachersLoginController;
+use App\Http\Controllers\Stud_Log_RegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\TestController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 
 
 
@@ -40,3 +42,25 @@ Route::controller(TestController::class)->group(function(){
     Route::post('/score', 'score')->name('score');
 
 });
+
+
+// Route::get('teachlogin', function(){
+
+// return view('login.teachers_login');
+
+// })->name('teachlogin');
+
+
+Route::get('/teachlogin',[TeachersLoginController::class, 'showLoginForm'])->name('teachlogin');
+Route::post('/teachcreate',[TeachersLoginController::class, 'teacherslogin'])->name('teachcreate');
+
+
+
+
+Route::get('/studlogin',[Stud_Log_RegController::class, 'studloginForm'])->name('studlogin');
+Route::post('/studattend',[Stud_Log_RegController::class, 'studnetslogin'])->name('studattend');
+
+
+
+Route::get('/studreg',[Stud_Log_RegController::class, 'studregForm'])->name('studreg');
+Route::post('/studinsert',[Stud_Log_RegController::class, 'studinsert'])->name('studinsert');

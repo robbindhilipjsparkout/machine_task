@@ -40,6 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'teacherslogin' => [
+            'driver' => 'session',
+            'provider' => 'teacherslogin',
+        ],
+        'studnetslogin' => [
+            'driver' => 'session',
+            'provider' => 'studnetslogin',
+        ],
     ],
 
     /*
@@ -65,10 +73,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'teacherslogin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\TeachersLoginModel::class,
+        ],
+
+        'studnetslogin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\StudentLogin::class,
+        ],
     ],
 
     /*
