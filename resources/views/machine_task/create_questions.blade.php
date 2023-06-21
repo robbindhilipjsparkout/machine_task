@@ -6,6 +6,17 @@
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Dashboard</title>
+  <style>
+       body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0;
+      background-image: url("https://img.freepik.com/free-vector/geometric-blue-background-desktop-wallpaper-vector_53876-135927.jpg");
+      background-size: cover;
+    }
+    </style>
 </head>
 <body>
 
@@ -22,7 +33,7 @@
 
 
   <div class="container">
-    <h1>Create Questions:</h1>
+    <h1 style="color:white">Create Questions:</h1>
     <!-- <form id="questionForm"  > -->
     <form method="POST" action="{{ route('questionstore')}}" style="margin-top:25px" id="questionForm" class=" login-input " enctype="multipart/form-data">
 
@@ -52,7 +63,7 @@
         </div>
       </div><br>
       <button type="submit" class="btn btn-primary">Submit</button>
-     <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
+     <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-danger">Back</button></a>
     </form>
   </div>
 

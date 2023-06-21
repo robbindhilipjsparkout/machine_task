@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
    <head>
       <meta charset="utf-8">
-      <title> Teachers-Login Form</title>
+      <title> Staff-Login Form</title>
       <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
@@ -162,7 +162,7 @@ color:red;
           <div class="container">
             <!-- <label for="show" class="close-btn fas fa-times" title="close"></label> --> 
             <div class="text">
-             Teachers-Login Form
+             Staff-Login Form
             </div>
             <form action="{{route('teachcreate')}}" method="post" >
 

@@ -39,9 +39,32 @@ Route::controller(TestController::class)->group(function(){
     Route::post('/questionstore', 'store')->name('questionstore');
 
 
-    Route::post('/score', 'score')->name('score');
+    Route::get('/score', 'score')->name('score');
 
 });
+
+
+Route::controller(TeachersLoginController::class)->group(function(){
+
+    Route::get('/teachlogin', 'showLoginForm')->name('teachlogin');
+    Route::post('/teachcreate', 'teacherslogin')->name('teachcreate');
+    
+});
+
+
+
+
+Route::controller(Stud_Log_RegController::class)->group(function(){
+
+
+    Route::get('/studlogin', 'studloginForm')->name('studlogin');
+    Route::post('/studattend', 'studnetslogin')->name('studattend');
+    
+    Route::get('/studreg', 'studregForm')->name('studreg');
+    Route::post('/studinsert','studinsert')->name('studinsert');
+    
+});
+
 
 
 // Route::get('teachlogin', function(){
@@ -49,18 +72,3 @@ Route::controller(TestController::class)->group(function(){
 // return view('login.teachers_login');
 
 // })->name('teachlogin');
-
-
-Route::get('/teachlogin',[TeachersLoginController::class, 'showLoginForm'])->name('teachlogin');
-Route::post('/teachcreate',[TeachersLoginController::class, 'teacherslogin'])->name('teachcreate');
-
-
-
-
-Route::get('/studlogin',[Stud_Log_RegController::class, 'studloginForm'])->name('studlogin');
-Route::post('/studattend',[Stud_Log_RegController::class, 'studnetslogin'])->name('studattend');
-
-
-
-Route::get('/studreg',[Stud_Log_RegController::class, 'studregForm'])->name('studreg');
-Route::post('/studinsert',[Stud_Log_RegController::class, 'studinsert'])->name('studinsert');

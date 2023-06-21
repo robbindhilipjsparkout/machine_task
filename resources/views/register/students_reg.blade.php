@@ -153,7 +153,7 @@ color:red;
   font-size:12px;
 }
 
-        </style>
+   </style>
    </head>
    <body>
       <div class="center">

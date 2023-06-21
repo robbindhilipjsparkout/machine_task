@@ -9,7 +9,9 @@
 
 </head>
 <body>
-    <h1 class="test">Test</h1>  
+    
+    <h1 class="test">Test</h1>   
+        <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
    
    
         <!-- <div class="time">
@@ -26,7 +28,7 @@
         @endif
 
 
-    <form action="{{ route('score') }}" method="POST">
+    <form action="{{ route('score') }}" method="GET">
         @csrf
 
         @php
@@ -35,7 +37,7 @@
 
         @foreach ($questions as $question)
            <h6>
-               <span class="counter">{{ $counter }} )</span>
+               <span class="counter">{{ $counter }} ) </span>
                <span class="question-text">{{ $question->questions }}</span>
            </h6>
             

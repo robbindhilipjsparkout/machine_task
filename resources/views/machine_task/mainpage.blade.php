@@ -11,7 +11,7 @@
       flex-direction: column;
       height: 100vh;
       margin: 0;
-      background-image: url("https://img.freepik.com/free-vector/geometric-blue-background-desktop-wallpaper-vector_53876-135927.jpg?w=1060&t=st=1686288162~exp=1686288762~hmac=19c1bce5236bdabfbabe5518c81f4cc5472bfdb8f82633840f0b6894ae69be12");
+      background-image: url("https://img.freepik.com/free-vector/geometric-blue-background-desktop-wallpaper-vector_53876-135927.jpg");
       background-size: cover;
     }
 

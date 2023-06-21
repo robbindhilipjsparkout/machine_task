@@ -131,6 +131,7 @@ public function score(Request $request)
 
     // Calculate the score
     $correctAnswers = 0;
+    $score=0;
 
     if (!empty($answers)) {
     
