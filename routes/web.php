@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TeachersLoginController;
 use App\Http\Controllers\Stud_Log_RegController;
+use App\Http\Middleware\PreventUrlAccess;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,19 +30,34 @@ return view('machine_task.mainpage');
 
 })->name('mainpage');
 
-Route::controller(TestController::class)->group(function(){
+
+Route::middleware(['preventUrlAccess'])->group(function(){
   
-    //Route::get('/questions', 'index')->name('dashboard');
-
-    Route::get('/attendtest', 'show')->name('attendshow');
+        //Route::get('/questions', 'index')->name('dashboard');
     
-    Route::get('/questionscreate', 'create')->name('questionscreate');
-    Route::post('/questionstore', 'store')->name('questionstore');
+        Route::get('/attendtest', [TestController::class,'show'])->name('attendshow');
+        
+        Route::get('/questionscreate', [TestController::class, 'create'])->name('questionscreate');
+        Route::post('/questionstore',  [TestController::class,'store'])->name('questionstore');
+    
+    
+        Route::get('/score',  [TestController::class,'score'])->name('score');
+    
+    });
+
+// Route::controller(TestController::class)->group(function(){
+  
+//     //Route::get('/questions', 'index')->name('dashboard');
+
+//     Route::get('/attendtest', 'show')->name('attendshow');
+    
+//     Route::get('/questionscreate', 'create')->name('questionscreate');
+//     Route::post('/questionstore', 'store')->name('questionstore');
 
 
-    Route::get('/score', 'score')->name('score');
+//     Route::get('/score', 'score')->name('score');
 
-});
+// });
 
 
 Route::controller(TeachersLoginController::class)->group(function(){

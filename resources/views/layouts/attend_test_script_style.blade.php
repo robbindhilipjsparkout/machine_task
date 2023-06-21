@@ -149,7 +149,7 @@
       font-size: 60px;
       font-weight: bold;
       text-align: center;
-      margin-top: 70px;
+      margin-top: 200px;
     }
 label{
 

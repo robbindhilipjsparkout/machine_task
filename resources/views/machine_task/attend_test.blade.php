@@ -10,10 +10,8 @@
 </head>
 <body>
     
-    <h1 class="test">Test</h1>   
-        <a href="{{route('mainpage')}}" ><button type="button" class="btn btn-primary">Back</button></a>
-   
-   
+
+<h1 class="test">Test</h1> 
         <!-- <div class="time">
             Time Remaining: <span id="timer"></span>
         </div> -->
@@ -70,10 +68,11 @@
         @endif
 
 
-    </form>
+    </form> 
 
-
-
+   
+        <a href="{{route('mainpage')}}" ><button style="margin:7px" type="button" class="btn btn-primary">Back</button></a>
+   
 
     
 </body>
