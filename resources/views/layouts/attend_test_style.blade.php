@@ -13,17 +13,10 @@
         <link href="css/style.css" rel="stylesheet">
         <link href="css/responsive.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-  
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
-   <!-- Add the necessary CSS and JavaScript files -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <style>
 
-<style>
-
-      
   body {
       display: flex;
       justify-content: center;
@@ -162,83 +155,3 @@ label{
 
 
 </style>
-
-
-    <!-- Include Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            // $('form').on('.submit', function(e) {
-            //     var form = $(this);  
-            //     var isValid = true;
-
-       $('.submit').click(function(e) {
-        var form = $(this).closest('form');
-        var isValid = true;
-
-
-
-
-                // Clear any previous error messages
-                $('.error-message').remove();
-
-                // Perform client-side validation
-                var checkedRadios = form.find('input[type="radio"]:checked');
-                if (checkedRadios.length === 0) {
-                    var errorMessage = $('<div class="error-message" style="color:red">*Please select an option</div>');
-                    form.prepend(errorMessage);
-                    isValid = false;
-                }
-                
-                // Prevent form submission if there are errors
-                if (!isValid) {
-                    e.preventDefault();
-                }
-            });
-        });
-    </script>
-
-
-
-
-<!-- for selected answers remain the same after in page changes also-->
-
-
-
-<script>
-    function loadNextPage(event) {
-        event.preventDefault();
-        let nextPageUrl = event.target.getAttribute('href');
-
-        // Make an AJAX request to load the next page
-        fetch(nextPageUrl)
-            .then(response => response.text())
-            .then(data => {
-                // Update the question container with the loaded HTML
-                document.getElementById('questionContainer').innerHTML = data;
-            })
-            .catch(error => console.error(error));
-    }
-
-    function loadPreviousPage(event) {
-        event.preventDefault();
-        let previousPageUrl = event.target.getAttribute('href');
-
-        // Make an AJAX request to load the previous page
-        fetch(previousPageUrl)
-            .then(response => response.text())
-            .then(data => {
-                // Update the question container with the loaded HTML
-                document.getElementById('questionContainer').innerHTML = data;
-            })
-            .catch(error => console.error(error));
-    }
-
-    function submitTest() {
-        // Submit the test form using AJAX
-        document.querySelector('form').submit();
-    }
-</script>

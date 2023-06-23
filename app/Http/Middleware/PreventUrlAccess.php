@@ -19,11 +19,11 @@ class PreventUrlAccess
   public function handle($request, Closure $next)
   {
 
-    if ($request->url() === route('attendshow') && !auth()->check()) {
-        return redirect()->route('studlogin');
-    }
+   if ($request->url() === route('attendshow') && !auth()->check()) {
+            return redirect()->route('studlogin');
+        }
 
-    return $next($request);
-}
+        return $next($request);
+    }
     
 }

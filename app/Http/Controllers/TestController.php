@@ -108,13 +108,13 @@ return redirect()->route('questionscreate')->with('message', 'Questions stored s
      */
     public function show(CorrectAnswer $correctAnswer)
     {
-     
         $questions=Questions::with('QuestionToOption')->paginate(5);
         
-        
+        $storedAnswers = session('answers', []);
+
         //$correctanswer=CorrectAnswer::get();
 
-        return view('machine_task.attend_test',  compact('questions'));
+        return view('machine_task.attend_test',  compact('questions', 'storedAnswers'));
 
 
     }
@@ -125,13 +125,19 @@ public function score(Request $request)
 {
     $answers = $request->input('answers');
 
+    session(['answers' => $answers]);
+
+
     // Retrieve the correct answers from the database
     $questions = Questions::with('QuestionToCorrectAnswer')->get();
     //$correctAnswers = CorrectAnswer::pluck('correctanswer', 'questions_id');
+    
 
     // Calculate the score
     $correctAnswers = 0;
+
     $score=0;
+
 
     if (!empty($answers)) {
     

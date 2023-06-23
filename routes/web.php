@@ -31,33 +31,33 @@ return view('machine_task.mainpage');
 })->name('mainpage');
 
 
-Route::middleware(['preventUrlAccess'])->group(function(){
+// Route::middleware(['preventUrlAccess'])->group(function(){
   
-        //Route::get('/questions', 'index')->name('dashboard');
+//         //Route::get('/questions', 'index')->name('dashboard');
     
-        Route::get('/attendtest', [TestController::class,'show'])->name('attendshow');
+//         Route::get('/attendtest', [TestController::class,'show'])->name('attendshow');
         
-        Route::get('/questionscreate', [TestController::class, 'create'])->name('questionscreate');
-        Route::post('/questionstore',  [TestController::class,'store'])->name('questionstore');
+//         Route::get('/questionscreate', [TestController::class, 'create'])->name('questionscreate');
+//         Route::post('/questionstore',  [TestController::class,'store'])->name('questionstore');
     
     
-        Route::get('/score',  [TestController::class,'score'])->name('score');
+//         Route::get('/score',  [TestController::class,'score'])->name('score');
     
-    });
+//     });
 
-// Route::controller(TestController::class)->group(function(){
+Route::controller(TestController::class)->group(function(){
   
-//     //Route::get('/questions', 'index')->name('dashboard');
+    //Route::get('/questions', 'index')->name('dashboard');
 
-//     Route::get('/attendtest', 'show')->name('attendshow');
+    Route::get('/attendtest', 'show')->name('attendshow');
     
-//     Route::get('/questionscreate', 'create')->name('questionscreate');
-//     Route::post('/questionstore', 'store')->name('questionstore');
+    Route::get('/questionscreate', 'create')->name('questionscreate');
+    Route::post('/questionstore', 'store')->name('questionstore');
 
 
-//     Route::get('/score', 'score')->name('score');
+    Route::post('/score', 'score')->name('score');
 
-// });
+});
 
 
 Route::controller(TeachersLoginController::class)->group(function(){
