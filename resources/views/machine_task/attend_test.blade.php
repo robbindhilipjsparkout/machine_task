@@ -11,18 +11,17 @@
     <!-- <div class="time">
         Time Remaining: <span id="timer"></span>
     </div> -->
-    <div id="formContent">
-    @if ($questions->currentPage() == 1)
-    <h1 class="test">Test</h1>
-    <p id="firstPageParagraph">
-        * You must use a functioning webcam and microphone.<br>
-        * No cell phones or other secondary devices in the room or test area.<br>
-        * Your desk/table must be clear of any materials except your test-taking device.<br>
-        * No one else can be in the room with you.<br>
-        * No talking.
-    </p>
-@endif
 
+    @if ($questions->currentPage() == 1)
+     <h1 class="test">Test</h1>
+        <p>
+            * You must use a functioning webcam and microphone.<br>
+            * No cell phones or other secondary devices in the room or test area.<br>
+            * Your desk/table must be clear or any materials except your test-taking device.<br>
+            * No one else can be in the room with you.<br>
+            * No talking.
+        </p>
+    @endif
     <div id="questionContainer">
     <form id="questionForm" action="{{ route('score') }}" method="GET"  >
             @csrf
@@ -60,7 +59,7 @@
             @endforeach
 
       
-</div>
+
 
             @if ($questions->currentPage() == $questions->lastPage())
     <button type="button" onclick="navigate('{{ $questions->previousPageUrl() }}')">Prev</button>
@@ -83,10 +82,9 @@
     <script>
     function navigate(url) {
         var form = document.getElementById('questionForm');
-        var formData = new FormData(form);
-
+        
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
+        xhr.open('GET', url);
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var response = xhr.responseText;
@@ -95,54 +93,16 @@
                 
                 var newForm = newDocument.getElementById('questionForm');
                 form.innerHTML = newForm.innerHTML;
-
-                // Restore the visibility of the first page paragraph if necessary
-                var firstPageParagraph = newDocument.getElementById('firstPageParagraph');
-                var currentParagraph = document.getElementById('firstPageParagraph');
-
-                if (firstPageParagraph && !currentParagraph) {
-                    var formContent = document.getElementById('formContent');
-                    formContent.insertAdjacentHTML('afterbegin', firstPageParagraph.outerHTML);
-                }
-
-                // Reattach the event listeners for next and previous buttons
-                attachNavigationListeners();
             }
         };
-        xhr.send(formData);
+        xhr.send();
     }
-
-    function attachNavigationListeners() {
-        var prevButton = document.getElementById('prevButton');
-        var nextButton = document.getElementById('nextButton');
-
-        if (prevButton) {
-            prevButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                var url = prevButton.getAttribute('href');
-                navigate(url);
-            });
-        }
-
-        if (nextButton) {
-            nextButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                var url = nextButton.getAttribute('href');
-                navigate(url);
-            });
-        }
-    }
-
-    attachNavigationListeners();
 
     function submitForm() {
         var form = document.getElementById('questionForm');
         form.submit();
     }
 </script>
-
-
-
 
 
 
