@@ -5,7 +5,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\TeachersLoginController;
 use App\Http\Controllers\Stud_Log_RegController;
 use App\Http\Middleware\PreventUrlAccess;
-
+// use App\Services\Output\Page\MachineTask;
+use App\Facades\Task;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,12 @@ use App\Http\Middleware\PreventUrlAccess;
 // });
 
 
+Route::get('/page', function(){
+
+    return Task::getpage();
+    
+    });
+    
 
 
 Route::get('/', function(){
@@ -88,3 +95,4 @@ Route::controller(Stud_Log_RegController::class)->group(function(){
 // return view('login.teachers_login');
 
 // })->name('teachlogin');
+
